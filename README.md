@@ -1,2 +1,2 @@
-# menubot
-Menu bot message ask
+# bot
+Menu bot
