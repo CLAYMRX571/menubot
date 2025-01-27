@@ -9,6 +9,6 @@ async def echo(message: types.Message, bot: Bot):
 async def start():
     dp.message.register(echo)
     bot = Bot("7920759596:AAGNAmgDFeaY6eQyCWZNMz0M29Dqtf25-ik")
-    await dp.start_polling(bot)
+    await dp.start_polling(bot, polling_timeout=1)
 
 run(start())
