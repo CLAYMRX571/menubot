@@ -1,6 +1,8 @@
 from aiogram import Bot, Dispatcher
 from asyncio import run
-from func import get_user_info
+from aiogram.types import BotCommand
+from aiogram.filters import Command
+import func
 
 dp = Dispatcher()
 
@@ -12,9 +14,15 @@ async def shutdown_answer(bot: Bot):
 
 async def start():
     dp.startup.register(startup_answer)
-    dp.message.register(get_user_info)
+    dp.message.register(func.start_answer, Command("start"))
+    dp.message.register(func.help_answer, Command("help"))
+    dp.message.register(func.get_user_info)
     dp.shutdown.register(shutdown_answer)
     bot = Bot("7920759596:AAGNAmgDFeaY6eQyCWZNMz0M29Dqtf25-ik")
+    await bot.set_my_commands([
+        BotCommand(command="/start", description="Bot ishga tushirish"),
+        BotCommand(command="/help", description="Yordam!")
+    ])
     await dp.start_polling(bot, polling_timeout=1)
 
 run(start())
