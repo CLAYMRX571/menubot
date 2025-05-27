@@ -3,6 +3,7 @@ from asyncio import run
 from aiogram.types import BotCommand
 from aiogram.filters import Command
 import func
+import states
 
 dp = Dispatcher()
 
@@ -14,15 +15,20 @@ async def shutdown_answer(bot: Bot):
 
 async def start():
     dp.startup.register(startup_answer)
-    dp.message.register(func.start_answer, Command("start"))
-    dp.message.register(func.help_answer, Command("help"))
-    dp.message.register(func.get_user_info)
+    dp.message.register(func.start_command_answer, Command("start"))
+    dp.message.register(func.help_command_answer, Command("help"))
+    dp.message.register(func.new_command_answer, Command("new"))
+    dp.message.register(func.stop_command_answer, Command("stop"))
+    dp.message.register(func.newAriza_name_answer, states.newAriza.name)
+    dp.message.register(func.newAriza_age_answer, states.newAriza.age)
     dp.shutdown.register(shutdown_answer)
-    bot = Bot("7920759596:AAGNAmgDFeaY6eQyCWZNMz0M29Dqtf25-ik")
+    bot = Bot("7920759596:AAGtqYvwsuXyHlBIqiBt41_jVNcplo4jt1c")
     await bot.set_my_commands([
-        BotCommand(command="/start", description="Bot ishga tushirish"),
-        BotCommand(command="/help", description="Yordam!")
+        BotCommand(command="/new", description="Yangi ariza yuborish"),
+        BotCommand(command="/stop", description="Arizani bekor qilish"),
+        BotCommand(command="/help", description="Botdan foydalanishda yordam")
     ])
+
     await dp.start_polling(bot, polling_timeout=1)
 
 run(start())
