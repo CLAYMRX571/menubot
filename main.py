@@ -21,8 +21,12 @@ async def start():
     dp.message.register(func.stop_command_answer, Command("stop"))
     dp.message.register(func.newAriza_name_answer, states.newAriza.name)
     dp.message.register(func.newAriza_age_answer, states.newAriza.age)
+    dp.message.register(func.newAriza_phone_answer, states.newAriza.phone)
+    dp.message.register(func.newAriza_job_answer, states.newAriza.job)
+    dp.message.register(func.newAriza_goal_answer, states.newAriza.goal)
+    dp.message.register(func.newAriza_verify_answer, states.newAriza.verify)
     dp.shutdown.register(shutdown_answer)
-    bot = Bot("7920759596:AAGtqYvwsuXyHlBIqiBt41_jVNcplo4jt1c")
+    bot = Bot("8049207134:AAE2bzZJh5QoZJN4OKsa6Thb8WKdPUBsa6M")
     await bot.set_my_commands([
         BotCommand(command="/new", description="Yangi ariza yuborish"),
         BotCommand(command="/stop", description="Arizani bekor qilish"),

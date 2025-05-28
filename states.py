@@ -6,3 +6,4 @@ class newAriza(StatesGroup):
     phone = State()
     job = State()
     goal = State()
+    verify = State()
